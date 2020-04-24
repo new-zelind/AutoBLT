@@ -1,0 +1,27 @@
+{
+  "name": "autoblt",
+  "version": "1.0.0",
+  "description": "A resource/utility bot for the Bynes/Lever RA staff",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/new-zelind/AutoBLT.git"
+  },
+  "author": "Segfault#2289",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/new-zelind/AutoBLT/issues"
+  },
+  "homepage": "https://github.com/new-zelind/AutoBLT#readme",
+  "dependencies": {
+    "@types/node": "^13.13.2",
+    "discord.js": "^12.0.1",
+    "dlv": "^1.1.3",
+    "dotenv": "^8.2.0",
+    "execa": "^4.0.0",
+    "keya": "^1.1.3"
+  }
+}
