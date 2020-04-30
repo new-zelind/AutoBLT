@@ -25,7 +25,7 @@ client.on("ready", () => {
   console.log("AutoBLT is online and ready");
   
   //automatically update status every minute
-  //I suck at indexing, so here's a try/catch structure:
+  //For some reason, this keep breaking unless I have a try/catch structure
   try{
     setInterval(() => {
       const index = Math.floor(Math.random() * (statuses.length - 1));
