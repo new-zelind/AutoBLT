@@ -18,17 +18,19 @@ const statuses = [
   "my residents"
 ];
 
+const prefix = "*";
+
 client.on("ready", () => {
 
   console.log("AutoBLT is online and ready");
   
   //automatically update status every minute
+  //I suck at indexing, so here's a try/catch structure:
   try{
-    console.log("setting status");
     setInterval(() => {
       const index = Math.floor(Math.random() * (statuses.length - 1));
       client.user.setActivity(statuses[index], {type: "WATCHING"});
-    }, 6000);
+    }, 60000);
   } catch {
     client.user.setActivity("with errors :/", {type: "PLAYING"});
   }
