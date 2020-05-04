@@ -57,6 +57,7 @@ client.on("message", (msg) => {
   //Can't execute a command we don't have.
   if (!commands.has(command)) {
     msg.channel.send("Error: unrecognized command.");
+    return;
   }
 
   //try/catch structure for commmand execution.
@@ -66,7 +67,6 @@ client.on("message", (msg) => {
     msg.channel.send(`Error executing ${command}. Please try again later.`);
   }
 });
-//nice
 
 client.on("guildMemberAdd", (member) => {
   console.log(`Started verification for ${member.id}`);
