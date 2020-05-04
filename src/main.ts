@@ -2,6 +2,7 @@ import discord, { Client, DiscordAPIError, Collection } from "discord.js";
 import { STATUS_CODES } from "http";
 import {client} from "./client";
 let verify = require("./behaviors/verify");
+
 //import commands from folder
 const botCommands = require("./commands");
 client.commands = new Collection();
@@ -22,7 +23,7 @@ const statuses = [
   "y'all",
   "training videos",
   "and waiting",
-  "my residents"
+  "the residents"
 ];
 
 const prefix = "*";
@@ -57,6 +58,7 @@ client.on("message", msg => {
   //Can't execute a command we don't have.
   if(!client.commands.has(command)){
     msg.channel.send("Error: unrecognized command.");
+    return;
   }
 
   //try/catch structure for commmand execution.
@@ -66,7 +68,6 @@ client.on("message", msg => {
     msg.channel.send(`Error executing ${command}. Please try again later.`);
   }
 });
-//nice
 
 client.on("guildMemberAdd", member => {
   console.log(`Started verification for ${member.id}`);
