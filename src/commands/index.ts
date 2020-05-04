@@ -1,3 +1,3 @@
-module.exports = {
-    Ping: require('./ping'),
-};
+import ping from "./ping";
+
+export { ping };

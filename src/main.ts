@@ -1,12 +1,15 @@
 import discord, { Client, DiscordAPIError, Collection } from "discord.js";
 import { STATUS_CODES } from "http";
-import {client} from "./client";
-let verify = require("./behaviors/verify");
+import { client } from "./client";
+
+import verify from "./behaviors/verify";
+
 //import commands from folder
-const botCommands = require("./commands");
-client.commands = new Collection();
-Object.keys(botCommands).map(key => {
-  client.commands.set(botCommands[key].name, botCommands[key]);
+import * as botCommands from "./commands";
+const commands = new Map();
+
+Object.keys(botCommands).map((key) => {
+  commands.set(botCommands[key].name, botCommands[key]);
 });
 
 //array of statuses for the bot
@@ -22,32 +25,29 @@ const statuses = [
   "y'all",
   "training videos",
   "and waiting",
-  "my residents"
+  "my residents",
 ];
 
 const prefix = "*";
 
 client.on("ready", () => {
-
   console.log("AutoBLT is online!");
-  
+
   //automatically update status every minute
   //For some reason, this keep breaking unless I have a try/catch structure
-  try{
+  try {
     setInterval(() => {
       const index = Math.floor(Math.random() * (statuses.length - 1));
-      client.user.setActivity(statuses[index], {type: "WATCHING"});
+      client.user.setActivity(statuses[index], { type: "WATCHING" });
     }, 60000);
   } catch {
-    client.user.setActivity("with errors :/", {type: "PLAYING"});
+    client.user.setActivity("with errors :/", { type: "PLAYING" });
   }
-
 });
 
-client.on("message", msg => {
-  
+client.on("message", (msg) => {
   //return if not a command invocation
-  if(!msg.content.startsWith(prefix)) return;
+  if (!msg.content.startsWith(prefix)) return;
 
   //get the command and arguments from the message.
   const args = msg.content.slice(prefix.length).split(/ +/);
@@ -55,20 +55,20 @@ client.on("message", msg => {
   console.log(`Command ${command} initiated`);
 
   //Can't execute a command we don't have.
-  if(!client.commands.has(command)){
+  if (!commands.has(command)) {
     msg.channel.send("Error: unrecognized command.");
   }
 
   //try/catch structure for commmand execution.
-  try{
-    client.commands.get(command).execute(msg, args);
+  try {
+    commands.get(command).execute(msg, args);
   } catch {
     msg.channel.send(`Error executing ${command}. Please try again later.`);
   }
 });
 //nice
 
-client.on("guildMemberAdd", member => {
+client.on("guildMemberAdd", (member) => {
   console.log(`Started verification for ${member.id}`);
   verify(member);
 });
