@@ -1,7 +1,7 @@
 import discord, { Client, DiscordAPIError, Collection } from "discord.js";
 import { STATUS_CODES } from "http";
 import {client} from "./client";
-
+let verify = require("./behaviors/verify");
 //import commands from folder
 const botCommands = require("./commands");
 client.commands = new Collection();
@@ -29,7 +29,7 @@ const prefix = "*";
 
 client.on("ready", () => {
 
-  console.log("AutoBLT is online and ready");
+  console.log("AutoBLT is online!");
   
   //automatically update status every minute
   //For some reason, this keep breaking unless I have a try/catch structure
@@ -65,4 +65,10 @@ client.on("message", msg => {
   } catch {
     msg.channel.send(`Error executing ${command}. Please try again later.`);
   }
+});
+//nice
+
+client.on("guildMemberAdd", member => {
+  console.log(`Started verification for ${member.id}`);
+  verify(member);
 });
