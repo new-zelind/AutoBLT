@@ -8,16 +8,20 @@ import {
   Channel,
   SystemChannelFlags,
   PartialGuildMember,
+  User,
 } from "discord.js";
 import { client } from "../client";
 const prompter = require("discordjs-prompter");
 
-export default async function verify(member: GuildMember | PartialGuildMember) {
+export default async function verify(member: GuildMember) {
+
+  console.log(`start`);
+
   //defines for beginning of function
   let name, position, leadership, room, building, year;
   let isCD = false;
   const dm = await member.createDM();
-
+  
   //send first message
   dm.send(
     "Greetings, and welcome to the Official Byrnes/Lever Team Discord Server! I'm AutoBLT, your friendly neighborhood Discord.js bot! To get started, I'll need some basic information."
@@ -137,6 +141,7 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
         room = ans.toUpperCase();
       });
     dm.send(`Room: ${room}. Got it.`);
+
     prompter
       .message(dm, {
         question: `Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)`,

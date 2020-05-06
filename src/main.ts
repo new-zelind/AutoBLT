@@ -1,4 +1,4 @@
-import discord, { Client, DiscordAPIError, Collection } from "discord.js";
+import discord, { Client, DiscordAPIError, Collection, GuildManager, GuildMember } from "discord.js";
 import { STATUS_CODES } from "http";
 import { client } from "./client";
 
@@ -31,7 +31,7 @@ const statuses = [
 const prefix = "*";
 
 client.on("ready", () => {
-  console.log("AutoBLT is online!");
+  console.log(`${client.user.tag} is online!`);
 
   //automatically update status every minute
   //For some reason, this keep breaking unless I have a try/catch structure
@@ -41,7 +41,7 @@ client.on("ready", () => {
       client.user.setActivity(statuses[index], { type: "WATCHING" });
     }, 60000);
   } catch {
-    client.user.setActivity("with errors :/", { type: "PLAYING" });
+    client.user.setActivity("stuff break :/", { type: "PLAYING" });
   }
 });
 
@@ -61,14 +61,14 @@ client.on("message", (msg) => {
   }
 
   //try/catch structure for commmand execution.
-  try {
+  //try {
     commands.get(command).execute(msg, args);
-  } catch {
-    msg.channel.send(`Error executing ${command}. Please try again later.`);
-  }
+  //} catch {
+  //  msg.channel.send(`Error executing ${command}. Please try again later.`);
+  //}
 });
 
-client.on("guildMemberAdd", (member) => {
+client.on("guildMemberAdd", (member : GuildMember) => {
   console.log(`Started verification for ${member.id}`);
   verify(member);
 });
