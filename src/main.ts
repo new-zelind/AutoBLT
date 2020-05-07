@@ -1,16 +1,18 @@
-import discord, { Client, DiscordAPIError, Collection, GuildManager, GuildMember } from "discord.js";
-import { STATUS_CODES } from "http";
+import discord, {
+  Client,
+  DiscordAPIError,
+  Collection,
+  GuildManager,
+  GuildMember,
+} from "discord.js";
 import { client } from "./client";
+import { handle, isCommand, RESPONSES } from "./lib/command";
 
+// Behaviors
 import verify from "./behaviors/verify";
 
-//import commands from folder
-import * as botCommands from "./commands";
-const commands = new Map();
-
-Object.keys(botCommands).map((key) => {
-  commands.set(botCommands[key].name, botCommands[key]);
-});
+// Load all commands
+import "./commands";
 
 //array of statuses for the bot
 const statuses = [
@@ -26,7 +28,7 @@ const statuses = [
   "training videos",
   "and waiting",
   "the residents",
-  "vexbot"
+  "vexbot",
 ];
 
 const prefix = "*";
@@ -46,32 +48,26 @@ client.on("ready", () => {
   }
 });
 
-client.on("message", (msg) => {
-  //return if not a command invocation
-  if (!msg.content.startsWith(prefix)) return;
+// Handle commands
+client.on("message", handle);
 
-  //get the command and arguments from the message.
-  const args = msg.content.slice(prefix.length).split(/ +/);
-  const command = args.shift().toLowerCase();
-  console.log(`Command ${command} initiated`);
-
-  //Can't execute a command we don't have.
-  if (!commands.has(command)) {
-    msg.channel.send("Error: unrecognized command.");
-    return;
+// Command editing
+client.on("messageUpdate", (old, current) => {
+  // Don't consider bot messages
+  if (old.author.bot) {
+    return false;
   }
 
-  //try/catch structure for commmand execution.
-  //try {
-    commands.get(command).execute(msg, args);
-  //} catch {
-  //  msg.channel.send(`Error executing ${command}. Please try again later.`);
-  //}
+  // If the old message was a command, delete the old response
+  if (isCommand(old) && RESPONSES.has(old)) {
+    RESPONSES.get(old).delete();
+  }
+
+  return handle(current);
 });
 
-
 //verify upon entry
-client.on("guildMemberAdd", (member : GuildMember) => {
+client.on("guildMemberAdd", (member: GuildMember) => {
   console.log(`Started verification for ${member.id}`);
   verify(member);
 });

@@ -1,10 +1,17 @@
-export default {
-  name: "ping",
-  description: "Heartbeat of bot",
+import Command, { Permissions } from "../lib/command";
+import { Message } from "discord.js";
 
-  execute(msg, args) {
-    let start = Date.now();
-    msg.reply("pong!");
-    msg.channel.send(`_Took ${Date.now() - start} ms._`);
+export default Command({
+  names: ["ping"],
+
+  check: Permissions.all,
+  async exec(message: Message, args: string[]) {
+    return message.channel.send("Pong!");
   },
-};
+
+  documentation: {
+    description: "Heartbeat",
+    group: "Bot",
+    usage: "ping",
+  },
+});

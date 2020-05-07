@@ -1,10 +1,19 @@
+import Command, { Permissions } from "../lib/command";
 import { MessageEmbed } from "discord.js";
+import { makeEmbed } from "../lib/util";
 
-export default {
-  name: "academic",
-  description: "The Fall 2020 Academic Calendar.",
-  execute(msg, args) {
-    const embed = new MessageEmbed()
+export default Command({
+  names: ["academic"],
+
+  documentation: {
+    description: "The Fall 2020 Academic Calendar.",
+    group: "HELP",
+    usage: "academic",
+  },
+
+  check: Permissions.all,
+  exec(message) {
+    const embed = makeEmbed(message)
       .setColor("#f66733")
       .setTitle("Fall 2020 Academic Calendar")
       .setURL(
@@ -33,10 +42,8 @@ export default {
         { name: "December 14", value: "Grades for graduation due" },
         { name: "December 16", value: "Final Grades due" },
         { name: "December 17", value: "December Graduation" }
-      )
-      .setTimestamp()
-      .setFooter("Invoked at:");
+      );
 
-    msg.channel.send(embed);
+    return message.channel.send(embed);
   },
-};
+});
