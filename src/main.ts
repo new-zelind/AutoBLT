@@ -25,7 +25,8 @@ const statuses = [
   "y'all",
   "training videos",
   "and waiting",
-  "my residents",
+  "the residents",
+  "vexbot"
 ];
 
 const prefix = "*";
@@ -68,7 +69,13 @@ client.on("message", (msg) => {
   //}
 });
 
+
+//verify upon entry
 client.on("guildMemberAdd", (member : GuildMember) => {
   console.log(`Started verification for ${member.id}`);
   verify(member);
 });
+
+//error handling
+process.on("uncaughtException", console.log);
+process.on("unhandledRejection", console.log);

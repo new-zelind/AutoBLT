@@ -15,13 +15,11 @@ const prompter = require("discordjs-prompter");
 
 export default async function verify(member: GuildMember) {
 
-  console.log(`start`);
-
   //defines for beginning of function
   let name, position, leadership, room, building, year;
   let isCD = false;
   const dm = await member.createDM();
-  
+
   //send first message
   dm.send(
     "Greetings, and welcome to the Official Byrnes/Lever Team Discord Server! I'm AutoBLT, your friendly neighborhood Discord.js bot! To get started, I'll need some basic information."
