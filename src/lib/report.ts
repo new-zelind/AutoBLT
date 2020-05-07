@@ -1,6 +1,6 @@
 import {Client, DiscordAPIError, Message} from "discord.js";
 import {authorization} from "../lib/access";
-import {Debug} from "../commands/debug";
+//import {Debug} from "../commands/debug";
 const owner = authorization("discord.owner");
 
 export default function report(client: Client){

@@ -11,7 +11,7 @@ import {
   User,
 } from "discord.js";
 import { client } from "../client";
-const prompter = require("discordjs-prompter");
+import {askString, choose, questionValidate} from "../lib/prompt";
 
 export default async function verify(member: GuildMember) {
 
@@ -26,33 +26,23 @@ export default async function verify(member: GuildMember) {
   );
 
   //ask for name
-  //"What is your name? (First name only, please!)",
+  name = await askString("What is your name? (First name only, please!)", dm);
   dm.send(`Thanks, ${name}.`);
 
   //ask for Leadership/RA role
-  //"Are you _Leadership_ or _RA_?",
+  position = await choose("Are you _Leadership_ or _RA_?", dm, [["LEADERSHIP"], ["RA"]]);
   
-
-  //input validation - if invalid, ask again.
-  while (position !== "leadership" && position !== "ra") {
-    dm.send("I'm sorry, I didn't quite understand what you said.");
-    //"Are you _Leadership_ or _RA_? (Type the role in italics that matches your position.)"
-  }
-
-  //nice
   //if leadership, then ask for role. Otherwise, it's an RA, so ask for their room and year.
   if (position === "LEADERSHIP") {
     //get if they're the grad or the community director
     dm.send("Leadership. Got it. Pleased to meet you!");
-    //"Are you a _GCD_ or a _CD_?",
+    leadership = await choose(
+      "Are you a _GCD_ or a _CD_? _(Type the role that best indicates your title.)_",
+      dm,
+      [["GCD"], ["CD"]]
+    );
 
-    //input validation - ask again if invalid
-    while (leadership !== "CD" && leadership !== "GCD") {
-      dm.send("I'm sorry, I didn't quite understand what you said.");
-      //"Are you a _GCD_ or a _CD_? (Type the role in italics that matches your position.)"
-    }
-
-    //special message for dad and set isCD to true.
+    //special message for dad
     if (leadership === "CD") {
       dm.send("Hello, Taylor.");
       isCD = true;
@@ -60,21 +50,22 @@ export default async function verify(member: GuildMember) {
   }
   else {
     dm.send("Ah, you're one of the RAs. Pleased to meet you!");
-    //"What room are you in? _(e.g. 10A6, 3C6)_",
+    room = await askString("What room are you in? _(e.g. 10A6, 3C6)_", dm);
     dm.send(`Room: ${room}. Got it.`);
 
-    //`Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)`
-
-    //input validation for year
-    while (year !== "NEW RA" && year !== "RETURNER") {
-      dm.send("I'm sorry. I don't quite understand what you said.");
-      //`Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)`
-    }
+    year = await choose(
+      "Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)",
+      dm,
+      [["RETURNER"], ["NEW RA"]]
+    );
   }
 
   //ask everyone but the CD for their building.
   if (isCD == false) {
-    //"One more thing: _Byrnes_ or _Lever_?"
+    building = await choose("One more thing: _Byrnes_ or _Lever_?",
+      dm,
+      [["BYRNES"], ["LEVER"]]
+    );
   }
 
   const roles = ["705916635839463434"]; //staff member role

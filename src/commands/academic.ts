@@ -39,7 +39,7 @@ export default Command({
         { name: "November 25 - 27", value: "Thanksgivingn Break" },
         { name: "November 28", value: "Clemson vs. USC Jr. Football Game" },
         { name: "December 7 - 11", value: "Campus Dead Days; Finals Week" },
-        { name: "December 14", value: "Grades for graduation due" },
+        { name: "December 14", value: "Grades for graduates due" },
         { name: "December 16", value: "Final Grades due" },
         { name: "December 17", value: "December Graduation" }
       );
