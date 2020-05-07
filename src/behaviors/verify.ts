@@ -26,7 +26,7 @@ export default async function verify(member: GuildMember) {
   );
 
   //ask for name
-  prompter
+  /*prompter
     .message(dm, {
       question: "What is your name? (First name only, please!)",
       userId: member.id,
@@ -39,10 +39,10 @@ export default async function verify(member: GuildMember) {
       }
       name = responses.first();
       dm.send(`Thanks, ${name}.`);
-    });
+    });*/
 
   //ask for Leadership/RA role
-  prompter
+  /*prompter
     .message(dm, {
       question: "Are you _Leadership_ or _RA_?",
       userId: member.id,
@@ -55,12 +55,12 @@ export default async function verify(member: GuildMember) {
       }
       const ans = responses.first();
       position = ans.toUpperCase();
-    });
+    });*/
 
   //input validation - if invalid, ask again.
   while (position !== "leadership" && position !== "ra") {
     dm.send("I'm sorry, I didn't quite understand what you said.");
-    prompter
+    /*prompter
       .message(dm, {
         question:
           "Are you _Leadership_ or _RA_? (Type the role in italics that matches your position.)",
@@ -74,7 +74,7 @@ export default async function verify(member: GuildMember) {
         }
         const ans = responses.first();
         position = ans.toUpperCase();
-      });
+      });*/
   }
 
   //nice
@@ -82,7 +82,7 @@ export default async function verify(member: GuildMember) {
   if (position === "LEADERSHIP") {
     //get if they're the grad or the community director
     dm.send("Leadership. Got it. Pleased to meet you!");
-    prompter
+    /*prompter
       .message(dm, {
         question: "Are you a _GCD_ or a _CD_?",
         userId: member.id,
@@ -95,12 +95,12 @@ export default async function verify(member: GuildMember) {
         }
         const ans = responses.first();
         leadership = ans.toUpperCase();
-      });
+      });*/
 
     //input validation - ask again if invalid
     while (leadership !== "CD" && leadership !== "GCD") {
       dm.send("I'm sorry, I didn't quite understand what you said.");
-      prompter
+      /*prompter
         .message(dm, {
           question:
             "Are you a _GCD_ or a _CD_? (Type the role in italics that matches your position.)",
@@ -114,7 +114,7 @@ export default async function verify(member: GuildMember) {
           }
           const ans = responses.first();
           leadership = ans.toUpperCase();
-        });
+        });*/
     }
 
     //special message for dad and set isCD to true.
@@ -124,7 +124,7 @@ export default async function verify(member: GuildMember) {
     }
   } else {
     dm.send("Ah, you're one of the RAs. Pleased to meet you!");
-    prompter
+    /*prompter
       .message(dm, {
         question: "What room are you in? _(e.g. 10A6, 3C6)_",
         userId: member.id,
@@ -137,10 +137,10 @@ export default async function verify(member: GuildMember) {
         }
         const ans = responses.first();
         room = ans.toUpperCase();
-      });
+      });*/
     dm.send(`Room: ${room}. Got it.`);
 
-    prompter
+    /*prompter
       .message(dm, {
         question: `Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)`,
         userId: member.id,
@@ -153,12 +153,12 @@ export default async function verify(member: GuildMember) {
         }
         const ans = responses.first();
         year = ans.toUpperCase();
-      });
+      });*/
 
     //input validation for year
     while (year !== "NEW RA" && year !== "RETURNER") {
       dm.send("I'm sorry. I don't quite understand what you said.");
-      prompter
+      /*prompter
         .message(dm, {
           question: `Are you a _New RA_ or a _Returner_? (Type the role in italics that best describes you.)`,
           userId: member.id,
@@ -171,13 +171,13 @@ export default async function verify(member: GuildMember) {
           }
           const ans = responses.first();
           year = ans.toUpperCase();
-        });
+        });*/
     }
   }
 
   //ask everyone but the CD for their building.
   if (isCD == false) {
-    prompter
+    /*prompter
       .message(dm, {
         question: "One more thing: _Byrnes_ or _Lever_?",
         userId: member.id,
@@ -190,7 +190,7 @@ export default async function verify(member: GuildMember) {
         }
         const ans = responses.first();
         building = ans.toUpperCase();
-      });
+      });*/
   }
 
   const roles = ["705916635839463434"]; //staff member role
