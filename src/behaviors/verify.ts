@@ -1,7 +1,4 @@
-import {
-  GuildMember,
-  PartialGuildMember,
-} from "discord.js";
+import {GuildMember, PartialGuildMember} from "discord.js";
 import { client } from "../client";
 import {askString, choose, questionValidate} from "../lib/prompt";
 
@@ -18,8 +15,7 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
   );
 
   //ask for name
-  try{name = await askString("What is your name? (First name only, please!)", dm);}
-  catch{dm.send("oop")};
+  name = await askString("What is your name? (First name only, please!)", dm);
   dm.send(`Thanks, ${name}.`);
 
   //ask for Leadership/RA role

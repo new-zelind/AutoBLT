@@ -11,7 +11,7 @@ export default Command({
 
   documentation: {
     description: "Check the Heartbeat of the bot",
-    group: "GENERAL",
+    group: "META",
     usage: "ping",
   },
 });

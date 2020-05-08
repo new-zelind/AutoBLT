@@ -67,7 +67,8 @@ export const RESPONSES = new Map<Message, Message>();
 export const DISABLED = new Set<CommandConfiguration>();
 
 export async function handle(message: Message): Promise<boolean> {
-  if (!isCommand(message)) return false;
+  if(!isCommand(message)) return false;
+  if(message.author.id == "680135764667138167") return false;
 
   // Get the appropriate command, if it exists
   const command = matchCommand(message);
