@@ -1,7 +1,5 @@
 import {
   Message as FullMessage,
-  Guild,
-  MessageEmbed,
   TextChannel,
   PartialMessage,
 } from "discord.js";
@@ -12,10 +10,6 @@ export const PREFIX = ["*"];
 
 type Message = FullMessage | PartialMessage;
 
-/**
- * Identifies if a passed message is a commmand
- * @param message
- */
 export function isCommand(message: Message) {
   return PREFIX.includes(message.content[0]);
 }
@@ -58,10 +52,6 @@ export function matchCommand(message: Message) {
   return REGISTRY.get(name);
 }
 
-/**
- * Adds new commands to the registry
- * @param config
- */
 export default function makeCommand(config: CommandConfiguration) {
   for (const name of config.names) {
     REGISTRY.set(name, config);
@@ -76,10 +66,6 @@ export const RESPONSES = new Map<Message, Message>();
 // Commands that are disabled go here
 export const DISABLED = new Set<CommandConfiguration>();
 
-/**
- * Actually handles the commands we send
- * @param message
- */
 export async function handle(message: Message): Promise<boolean> {
   if (!isCommand(message)) return false;
 

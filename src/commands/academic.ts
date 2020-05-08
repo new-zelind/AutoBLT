@@ -6,8 +6,8 @@ export default Command({
   names: ["academic"],
 
   documentation: {
-    description: "The Fall 2020 Academic Calendar.",
-    group: "HELP",
+    description: "Returns the Fall 2020 Academic Calendar.",
+    group: "GENERAL",
     usage: "academic",
   },
 

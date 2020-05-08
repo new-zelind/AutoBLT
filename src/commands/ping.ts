@@ -10,8 +10,8 @@ export default Command({
   },
 
   documentation: {
-    description: "Heartbeat",
-    group: "Bot",
+    description: "Check the Heartbeat of the bot",
+    group: "GENERAL",
     usage: "ping",
   },
 });
