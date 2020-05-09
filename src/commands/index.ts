@@ -18,3 +18,4 @@ import "./verify";
 import "./report";
 import "./source";
 import "./help";
+import "./machine";
