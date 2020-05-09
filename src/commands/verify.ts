@@ -11,7 +11,7 @@ export default Command({
     usage: "verify <user : @ mention>",
   },
 
-  check: Permissions.owner,
+  check: Permissions.admin,
   exec(message) {
     message.mentions.members.forEach((member: GuildMember) => {
       console.log(`Started manual verification for ${member}`);

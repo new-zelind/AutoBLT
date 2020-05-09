@@ -9,7 +9,7 @@
  *      Restrictions: None
  * DEV: Commands strictly reserved for the owner and develeopers of the bot.
  *      Restrictions: Users on the development team
-*/
+ */
 
 import "./ping";
 import "./academic";
@@ -17,3 +17,4 @@ import "./guide";
 import "./verify";
 import "./report";
 import "./source";
+import "./help";
