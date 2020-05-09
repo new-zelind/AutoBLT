@@ -17,3 +17,4 @@ import "./guide";
 import "./verify";
 import "./report";
 import "./source";
+import "./help";
