@@ -7,8 +7,8 @@ export default Command({
 
   documentation: {
     description: "Manually starts verification for a member",
-    group: "OWNER",
-    usage: "verify",
+    group: "ADMIN",
+    usage: "verify <user : @ mention>",
   },
 
   check: Permissions.owner,

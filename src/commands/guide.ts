@@ -4,6 +4,12 @@ import { Message } from "discord.js";
 export default Command({
   names: ["guide"],
 
+  documentation: {
+    description: "Returns a PDF of The Guide for RAs.",
+    group: "GENERAL",
+    usage: "guide",
+  },
+
   check: Permissions.all,
   async exec(message: Message, args: string[]) {
     return message.channel.send({
@@ -14,11 +20,5 @@ export default Command({
         },
       ],
     });
-  },
-
-  documentation: {
-    description: "Returns a PDF of The Guide for RAs.",
-    group: "Help",
-    usage: "guide",
   },
 });
