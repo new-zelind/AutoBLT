@@ -6,7 +6,7 @@ export default Command({
   names: ["verify"],
 
   documentation: {
-    description: "Manually starts verification for a member",
+    description: "Manually starts verification for a member.",
     group: "ADMIN",
     usage: "verify <user : @ mention>",
   },

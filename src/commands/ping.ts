@@ -10,7 +10,7 @@ export default Command({
   },
 
   documentation: {
-    description: "Check the Heartbeat of the bot",
+    description: "Check the Heartbeat of the bot.",
     group: "META",
     usage: "ping",
   },

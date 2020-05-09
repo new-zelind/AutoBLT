@@ -3,7 +3,7 @@ import Command, {Permissions} from "../lib/command";
 export default Command({
     names: ["report"],
     documentation:{
-        description: "Returns a link to the IR Form.",
+        description: "Returns a link to the Incident Reporting Form.",
         group: "GENERAL",
         usage: "report",
     },
