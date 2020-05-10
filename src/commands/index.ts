@@ -12,6 +12,7 @@
 */
 
 import "./about";
+import "./contact";
 import "./ping";
 import "./academic";
 import "./guide";
