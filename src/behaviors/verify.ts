@@ -1,6 +1,6 @@
 import {GuildMember, PartialGuildMember} from "discord.js";
 import { client } from "../client";
-import {askString, choose, questionValidate} from "../lib/prompt";
+import {askString, choose} from "../lib/prompt";
 
 export default async function verify(member: GuildMember | PartialGuildMember) {
 

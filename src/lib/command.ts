@@ -14,17 +14,19 @@ export function isCommand(message: Message) {
   return PREFIX.includes(message.content[0]);
 }
 
+// Redefinition of Command object; adds more functionalilty.
 export interface CommandConfiguration {
+  
+  //the name of the command
   names: string[];
 
+  // Documentation for *help command
   documentation: {
     description: string;
     usage: string;
     group: string;
     hidden?: boolean;
   };
-
-  // Lifecycle methods
 
   // See if it's valid to use the command (see the Permissions object below)
   check: (message: Message) => boolean | Promise<boolean>;
@@ -66,7 +68,10 @@ export const RESPONSES = new Map<Message, Message>();
 // Commands that are disabled go here
 export const DISABLED = new Set<CommandConfiguration>();
 
+// Function to handle messages when sent
 export async function handle(message: Message): Promise<boolean> {
+  
+  // If the command doesn't exist, return. If the author is the bot, return false.
   if(!isCommand(message)) return false;
   if(message.author.id == "680135764667138167") return false;
 
@@ -74,9 +79,9 @@ export async function handle(message: Message): Promise<boolean> {
   const command = matchCommand(message);
   if (!command) {
     message.channel.send(
-      `No such command \`${message.content.slice(1).split(" ")[0]}\`. Use \`${
+      `Error: command \`${message.content.slice(1).split(" ")[0]}\` does not exist. Use \`${
         PREFIX[0]
-      }help\` for a list of commands`
+      }help\` for a list of commands.`
     );
     return false;
   }
@@ -91,7 +96,6 @@ export async function handle(message: Message): Promise<boolean> {
   const allowed = await command.check(message);
   if (!allowed && command.fail) {
     command.fail(message);
-
     return true;
   }
 
@@ -100,9 +104,9 @@ export async function handle(message: Message): Promise<boolean> {
 
   // Start the timer (for when we edit the message later to indicate how long the command takes)
   const start = Date.now();
-  const response = await command.exec(message, argv);
 
-  const time = Date.now() - start;
+  // Execute the command
+  const response = await command.exec(message, argv);
 
   // If the command gave us a response to track
   if (response) {
@@ -147,6 +151,7 @@ export async function handle(message: Message): Promise<boolean> {
   return true;
 }
 
+// Enforce role permission restricted-commands.
 export const Permissions = {
   admin(message: Message) {
     return (

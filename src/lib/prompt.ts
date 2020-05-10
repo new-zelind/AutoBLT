@@ -1,6 +1,5 @@
 import {addOneTimeMessageHandler} from "./message";
 import {DMChannel, Message} from "discord.js";
-import { promises } from "dns";
 
 //ask question and wait for response from user
 function ask(question: string, channel: DMChannel) {
