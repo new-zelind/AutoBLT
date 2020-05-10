@@ -2,7 +2,7 @@ import {addOneTimeMessageHandler} from "./message";
 import {DMChannel, Message} from "discord.js";
 
 //ask question and wait for response from user
-function ask(question: string, channel: DMChannel) {
+export function ask(question: string, channel: DMChannel) {
   channel.send(question);
   return new Promise<Message>(resolve => {
     addOneTimeMessageHandler(message => {
@@ -24,7 +24,7 @@ type ValidatorFunction = (
 ) => Promise<boolean | string> | string | boolean;
 
 //simple method to automatically validate inputs from the user
-function questionValidate(
+export function questionValidate(
   question: string,
   channel: DMChannel,
   validate: ValidatorFunction,
@@ -47,7 +47,7 @@ function questionValidate(
 }
 
 //for when the user must select different options
-function choose(question: string, channel: DMChannel, options: string[][]) {
+export function choose(question: string, channel: DMChannel, options: string[][]) {
   return questionValidate(
     question,
     channel,
@@ -61,5 +61,3 @@ function choose(question: string, channel: DMChannel, options: string[][]) {
     "I can\'t quite understand what you said. Try again, please."
   );
 }
-
-export { ask, askString as question, questionValidate, choose };
