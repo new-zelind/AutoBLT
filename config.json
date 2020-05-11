@@ -1,0 +1,18 @@
+{
+    "leaderboard": {
+        "titles": {
+            "Leaderboard": "messages sent",
+            "People with No Lives": "hours on the server",
+            "Best RAs": "IRs written",
+            "Responsible Employees": "desk shifts missed",
+            "Best Co-workers": "staff meetings attended",
+            "Banhammer incoming": "fireable offenses",
+            "IQ Scores": "points",
+            "Football Legends": "Nattys won",
+            "Best Students": "classes failed",
+            "Worst RAs": "policy violations",
+            "Bad Schedulers": "8 a.m. classes",
+            "Top Shitposters": "low-effort memes"
+        }
+    }
+}

@@ -35,7 +35,7 @@ export default Command({
                 },
                 {
                     name: "Anthing else?",
-                    value: "Yes! I have two brothers, Vexbot and ByrnesBot, who are both moderation bots. I am the youngest; my oldest brother, Vexbot, was made for the VEX Robotics Teams of South Carolina Discord server. ByrnesBot was made for Zach's Floor Discords for his residents. (They're great, but kinda annoying if you ask me.)"
+                    value: "Yes! I have two brothers, Vexbot and ByrnesBot, who are both moderation bots. I am the youngest; my oldest brother, Vexbot, was made for the VEX Robotics Teams of South Carolina Discord server. ByrnesBot was made for Zach\'s Floor Discords for his residents. (They\'re great, but kinda annoying if you ask me.)"
                 }
             );
         return message.channel.send(embed);
