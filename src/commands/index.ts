@@ -11,12 +11,17 @@
  *      Restrictions: Users on the development team
 */
 
+//Please keep imports in alphabeteical order! -Zach
 import "./about";
-import "./contact";
-import "./ping";
 import "./academic";
+import "./capture";
+import "./contact";
 import "./guide";
-import "./verify";
+import "./help";
+import "./ping";
 import "./report";
 import "./source";
-import "./help";
+import "./starrez";
+import "./verify";
+
+
