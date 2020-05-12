@@ -11,7 +11,7 @@
  *      Restrictions: Users on the development team
 */
 
-//Please keep imports in alphabeteical order! -Zach
+//Please keep imports in alphabetical order! -Zach
 import "./about";
 import "./academic";
 import "./capture";
@@ -23,5 +23,3 @@ import "./report";
 import "./source";
 import "./starrez";
 import "./verify";
-
-
