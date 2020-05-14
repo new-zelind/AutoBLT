@@ -11,7 +11,6 @@ import { handle, isCommand, RESPONSES } from "./lib/command";
 // Behaviors
 import verify from "./behaviors/verify";
 import "./behaviors/easterEggs";
-
 // Load all commands
 import "./commands";
 
@@ -45,7 +44,7 @@ client.on("ready", () => {
       client.user.setActivity(statuses[index], { type: "WATCHING" });
     }, 60000);
   } catch {
-    client.user.setActivity("stuff break :/", { type: "PLAYING" });
+    client.user.setActivity("stuff break :/", { type: "WATCHING" });
   }
 });
 

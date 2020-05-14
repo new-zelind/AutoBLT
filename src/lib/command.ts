@@ -38,7 +38,8 @@ export function isCommand(message: Message) {
  *  fail: If #check fails, the alternate flow to take upon a failure.
  * 
  * @constraints 
- *  None
+ *  (names && description && usage && group).length > 0
+ *  check != NULL 
  * 
  * @initialization Ensures
  *   (names && (documentation) && check) == ""
@@ -169,7 +170,7 @@ export async function handle(message: Message): Promise<boolean> {
           })*`
       );
 
-      // Otherwise get the last embed and edit it;
+    // Otherwise get the last embed and edit it;
     } else {
       const embed = main.embeds[0];
 
@@ -244,11 +245,13 @@ export const Permissions = {
     return true;
   },
 
+  //Compose a new list of permissions
   compose(...checks: ((message: Message) => boolean)[]) {
     return (message) =>
       checks.map((check) => check(message)).every((resp) => resp);
   },
 
+  //Combine two permissions groups in an OR clause.
   any(...checks: ((message: Message) => boolean)[]) {
     return (message) =>
       checks.map((check) => check(message)).some((resp) => resp);

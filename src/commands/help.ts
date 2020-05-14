@@ -37,7 +37,7 @@ export const HelpCommand = Command({
     }
 
     // Build the output
-    let body = "Here's a list of all my commands:";
+    let body = "Here\'s a list of my commands:";
 
     // List all of the command channels
     for (const [name, commands] of Object.entries(groups)) {
