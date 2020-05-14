@@ -14,6 +14,7 @@ import "./behaviors/easterEggs";
 
 // Load all commands
 import "./commands";
+import { handleMessage, addMessageHandler } from "./lib/message";
 
 //array of statuses for the bot
 const statuses = [
@@ -49,8 +50,11 @@ client.on("ready", () => {
   }
 });
 
-// Handle commands
-client.on("message", handle);
+// Ignore bot commands
+addMessageHandler((message) => message.author.bot);
+
+// Handle commands next
+addMessageHandler(handle);
 
 // Command editing
 client.on("messageUpdate", (old, current) => {
@@ -72,6 +76,9 @@ client.on("guildMemberAdd", (member: GuildMember) => {
   console.log(`Started verification for ${member.id}`);
   verify(member);
 });
+
+// All message handlers
+client.on("message", handleMessage);
 
 //error handling
 process.on("uncaughtException", console.log);
