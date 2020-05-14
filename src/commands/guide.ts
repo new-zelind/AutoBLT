@@ -5,7 +5,7 @@ export default Command({
   names: ["guide"],
 
   documentation: {
-    description: "Returns a PDF of The Guide for RAs.",
+    description: "Returns a PDF of _The Guide for RAs_.",
     group: "GENERAL",
     usage: "guide",
   },
