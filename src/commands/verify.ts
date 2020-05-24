@@ -13,9 +13,6 @@ export default Command({
 
   check: Permissions.admin,
   exec(message) {
-    message.mentions.members.forEach((member: GuildMember) => {
-      console.log(`Started manual verification for ${member}`);
-      verify(member);
-    });
+    message.mentions.members.forEach((member: GuildMember) => {verify(member);});
   },
 });

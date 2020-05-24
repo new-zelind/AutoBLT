@@ -23,7 +23,7 @@ const statuses = [
   "the front desk",
   "Clemson Football",
   "ByrnesBot",
-  "for errors",
+  "for segfaults",
   "TigerFlix",
   "sports highlights",
   "y'all",
@@ -72,10 +72,7 @@ client.on("messageUpdate", (old, current) => {
 });
 
 //verify upon entry
-client.on("guildMemberAdd", (member: GuildMember) => {
-  console.log(`Started verification for ${member.id}`);
-  verify(member);
-});
+client.on("guildMemberAdd", (member: GuildMember) => {verify(member);});
 
 // All message handlers
 client.on("message", handleMessage);
