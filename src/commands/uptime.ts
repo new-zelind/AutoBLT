@@ -22,7 +22,7 @@ export default Command({
     let s = seconds % 60;
 
     return message.channel.send(
-      `**${client.user.tag} UPTIME**\n_${d}_ DAYS, _${h}_ HOURS, _${m}_ MINUTES, _${s}_ SECONDS`
+      `**${client.user.tag} UPTIME**\n_${d}_ DAYS, _${h}_ HOURS, _${m}_ MINUTES, _${s.toFixed(3)}_ SECONDS`
     );
   },
 });

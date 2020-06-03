@@ -31,22 +31,17 @@ const statuses = [
 ];
 
 client.on("ready", () => {
-  if (!client.user) {
-    return;
-  }
+
+  //whoops, something broke
+  if (!client.user) return;
 
   console.log(`${client.user.tag} is online!`);
 
   //automatically update status every minute
-  //For some reason, this keep breaking unless I have a try/catch structure
-  try {
-    setInterval(() => {
-      const index = Math.floor(Math.random() * (statuses.length - 1));
-      client.user?.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
-    }, 60000);
-  } catch {
-    client.user.setActivity("0x4675636B204D6500", { type: "WATCHING" });
-  }
+  setInterval(() => {
+    const index = Math.floor(Math.random() * (statuses.length - 1));
+    client.user?.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
+  }, 60000);
 });
 
 // Ignore bot commands
