@@ -18,22 +18,20 @@ import { handleMessage, addMessageHandler } from "./lib/message";
 
 //array of statuses for the bot
 const statuses = [
-  "over the server",
-  "from afar",
-  "the front desk",
-  "Clemson Football",
-  "ByrnesBot",
-  "for segfaults",
-  "TigerFlix",
-  "sports highlights",
-  "y'all",
-  "training videos",
-  "and waiting",
-  "the residents",
-  "vexbot",
+  "Issuing keys",
+  "Gazing to the stars",
+  "Working the front desk",
+  "Watching over the server",
+  "Judging ByrnesBot",
+  "Watching for segfaults",
+  "Browsing TigerFlix",
+  "Watching sports highlights",
+  "Dealing with y'all",
+  "Finishing some training videos",
+  "Comfortably Numb",
+  "Writing an IR :/",
+  "Harassing Vexbot",
 ];
-
-const prefix = "*";
 
 client.on("ready", () => {
   console.log(`${client.user.tag} is online!`);
@@ -43,10 +41,10 @@ client.on("ready", () => {
   try {
     setInterval(() => {
       const index = Math.floor(Math.random() * (statuses.length - 1));
-      client.user.setActivity(statuses[index], { type: "WATCHING" });
+      client.user.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
     }, 60000);
   } catch {
-    client.user.setActivity("stuff break :/", { type: "PLAYING" });
+    client.user.setActivity("stuff break :/", { type: "WATCHING" });
   }
 });
 
