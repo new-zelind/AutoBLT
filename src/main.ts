@@ -66,7 +66,9 @@ client.on("messageUpdate", (old, current) => {
 });
 
 //verify upon entry
-client.on("guildMemberAdd", (member: GuildMember) => {verify(member);});
+client.on("guildMemberAdd", (member: GuildMember) => {
+  verify(member);
+});
 
 // All message handlers
 client.on("message", handleMessage);
