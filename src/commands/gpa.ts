@@ -63,7 +63,7 @@ export default Command({
             totalHours += parseInt(hours, 10);
         }
 
-        let gpa = totalPoints / totalHours;
+        let gpa: number  = totalPoints / totalHours;
 
         return dm.send(`Alright, your semester GPA is ${gpa}`);
     },
