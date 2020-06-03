@@ -19,18 +19,15 @@ import { handleMessage, addMessageHandler } from "./lib/message";
 //array of statuses for the bot
 const statuses = [
   "Issuing keys",
-  "Gazing to the stars",
   "Working the front desk",
   "Watching over the server",
   "Judging ByrnesBot",
-  "Watching for segfaults",
   "Browsing TigerFlix",
   "Watching sports highlights",
-  "Dealing with y'all",
+  "THE CAKE IS NOT A LIE",
   "Finishing some training videos",
-  "Comfortably Numb",
   "Writing an IR :/",
-  "Harassing Vexbot",
+  "Poking Vexbot",
 ];
 
 client.on("ready", () => {
@@ -44,7 +41,7 @@ client.on("ready", () => {
       client.user.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
     }, 60000);
   } catch {
-    client.user.setActivity("stuff break :/", { type: "WATCHING" });
+    client.user.setActivity("0x4675636B204D6500", { type: "WATCHING" });
   }
 });
 
