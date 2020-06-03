@@ -11,6 +11,7 @@ import { handle, isCommand, RESPONSES } from "./lib/command";
 
 // Behaviors
 import verify from "./behaviors/verify";
+import "./behaviors/easterEggs";
 
 // Load all commands
 import "./commands";
