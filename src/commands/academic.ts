@@ -1,5 +1,4 @@
 import Command, { Permissions } from "../lib/command";
-import { MessageEmbed } from "discord.js";
 import { makeEmbed } from "../lib/util";
 
 export default Command({

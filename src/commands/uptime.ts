@@ -17,7 +17,7 @@ export default Command({
         let h = Math.floor(seconds/3600);
         seconds %= 3600;
         let m = Math.floor(seconds / 60);
-        let s = seconds % 60;
+        let s = Math.floor(seconds % 60);
 
         return message.channel.send(
             `**${client.user.tag} UPTIME**\n_${d}_ DAYS, _${h}_ HOURS, _${m}_ MINUTES, _${s}_ SECONDS`

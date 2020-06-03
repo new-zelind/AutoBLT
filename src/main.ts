@@ -10,7 +10,6 @@ import { handle, isCommand, RESPONSES } from "./lib/command";
 
 // Behaviors
 import verify from "./behaviors/verify";
-import "./behaviors";
 
 // Load all commands
 import "./commands";
