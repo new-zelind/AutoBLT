@@ -10,7 +10,6 @@ import { handle, isCommand, RESPONSES } from "./lib/command";
 
 // Behaviors
 import verify from "./behaviors/verify";
-import "./behaviors";
 
 // Load all commands
 import "./commands";
@@ -67,7 +66,9 @@ client.on("messageUpdate", (old, current) => {
 });
 
 //verify upon entry
-client.on("guildMemberAdd", (member: GuildMember) => {verify(member);});
+client.on("guildMemberAdd", (member: GuildMember) => {
+  verify(member);
+});
 
 // All message handlers
 client.on("message", handleMessage);
