@@ -4,6 +4,7 @@ import discord, {
   Collection,
   GuildManager,
   GuildMember,
+  PartialGuildMember,
 } from "discord.js";
 import { client } from "./client";
 import { handle, isCommand, RESPONSES } from "./lib/command";
@@ -30,6 +31,10 @@ const statuses = [
 ];
 
 client.on("ready", () => {
+  if (!client.user) {
+    return;
+  }
+
   console.log(`${client.user.tag} is online!`);
 
   //automatically update status every minute
@@ -37,7 +42,7 @@ client.on("ready", () => {
   try {
     setInterval(() => {
       const index = Math.floor(Math.random() * (statuses.length - 1));
-      client.user.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
+      client.user?.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
     }, 60000);
   } catch {
     client.user.setActivity("0x4675636B204D6500", { type: "WATCHING" });
@@ -53,22 +58,25 @@ addMessageHandler(handle);
 // Command editing
 client.on("messageUpdate", (old, current) => {
   // Don't consider bot messages
-  if (old.author.bot) {
+  if (old.author?.bot) {
     return false;
   }
 
   // If the old message was a command, delete the old response
   if (isCommand(old) && RESPONSES.has(old)) {
-    RESPONSES.get(old).delete();
+    RESPONSES.get(old)?.delete();
   }
 
   return handle(current);
 });
 
 //verify upon entry
-client.on("guildMemberAdd", (member: GuildMember) => {
-  verify(member);
-});
+client.on(
+  "guildMemberAdd",
+  async (member: GuildMember | PartialGuildMember) => {
+    verify(member);
+  }
+);
 
 // All message handlers
 client.on("message", handleMessage);

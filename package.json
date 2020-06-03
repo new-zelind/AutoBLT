@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/new-zelind/AutoBLT#readme",
   "dependencies": {
+    "@types/dlv": "^1.1.2",
     "@types/node": "^13.13.2",
     "@types/ws": "^7.2.4",
     "discord.js": "^12.2.0",

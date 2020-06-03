@@ -11,6 +11,7 @@ export const PREFIX = ["*"];
 type Message = FullMessage | PartialMessage;
 
 export function isCommand(message: Message) {
+  if (!message.content) return false;
   return PREFIX.includes(message.content[0]);
 }
 
@@ -43,7 +44,7 @@ export interface CommandConfiguration {
 export const REGISTRY = new Map<string, CommandConfiguration>();
 
 export function matchCommand(message: Message) {
-  const name = message.content.slice(1).split(" ")[0];
+  const name = message.content?.slice(1).split(" ")[0] || "";
 
   if (!REGISTRY.has(name)) {
     return null;
@@ -67,14 +68,16 @@ export const RESPONSES = new Map<Message, Message>();
 export const DISABLED = new Set<CommandConfiguration>();
 
 export async function handle(message: Message): Promise<boolean> {
-  if(!isCommand(message)) return false;
-  if(message.author.id == "680135764667138167") return false;
+  if (!isCommand(message)) return false;
+  if (message.author?.id == "680135764667138167") return false;
+
+  if (!message.content) return false;
 
   // Get the appropriate command, if it exists
   const command = matchCommand(message);
   if (!command) {
     message.channel.send(
-      `No such command \`${message.content.slice(1).split(" ")[0]}\`. Use \`${
+      `No such command \`${message.content?.slice(1).split(" ")[0]}\`. Use \`${
         PREFIX[0]
       }help\` for a list of commands`
     );
@@ -112,7 +115,7 @@ export async function handle(message: Message): Promise<boolean> {
     RESPONSES.set(message, main);
 
     // If there isn't any attached embeds, then edit the message itself
-    if (main.embeds.length < 1) {
+    if (!main.embeds || main.embeds.length < 1) {
       main.edit(
         main.content +
           ` *(took ${Date.now() - start}ms${
@@ -124,23 +127,14 @@ export async function handle(message: Message): Promise<boolean> {
     } else {
       const embed = main.embeds[0];
 
-      const replacement = makeEmbed(main)
-        .setFooter(embed.footer.text)
-        .setTitle(embed.title)
-        .setColor(embed.color)
-        .setDescription(embed.description)
-        .setImage((embed.image || { url: undefined }).url)
-        .setThumbnail((embed.thumbnail || { url: undefined }).url)
-        .setTimestamp(new Date(embed.timestamp))
-        .setURL(embed.url);
+      embed.setFooter(
+        embed.footer?.text +
+          ` *(took ${Date.now() - start}ms${
+            process.env["DEV"] ? " — DEV MODE" : ""
+          })*`
+      );
 
-      if (embed.author) {
-        replacement.setAuthor(embed.author);
-      }
-
-      replacement.fields = embed.fields;
-
-      main.edit({ embed: replacement });
+      main.edit({ embed });
     }
   }
 
@@ -151,12 +145,12 @@ export const Permissions = {
   admin(message: Message) {
     return (
       message.channel.type === "text" &&
-      message.member.hasPermission("ADMINISTRATOR")
+      !!message.member?.hasPermission("ADMINISTRATOR")
     );
   },
 
   owner(message: Message) {
-    return message.author.id === owner;
+    return message.author?.id === owner;
   },
 
   guild(message: Message) {
@@ -180,12 +174,12 @@ export const Permissions = {
   },
 
   compose(...checks: ((message: Message) => boolean)[]) {
-    return (message) =>
+    return (message: Message) =>
       checks.map((check) => check(message)).every((resp) => resp);
   },
 
   any(...checks: ((message: Message) => boolean)[]) {
-    return (message) =>
+    return (message: Message) =>
       checks.map((check) => check(message)).some((resp) => resp);
   },
 };

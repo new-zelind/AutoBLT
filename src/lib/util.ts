@@ -18,8 +18,8 @@ export function makeEmbed(message?: Message | PartialMessage) {
   if (message) {
     const invoker =
       message.channel.type === "text"
-        ? message.member.displayName
-        : message.author.username;
+        ? message.member?.displayName
+        : message.author?.username;
     embed.setFooter(`Invoked by ${invoker}`);
   }
 

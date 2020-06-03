@@ -13,6 +13,10 @@ export default Command({
 
   check: Permissions.admin,
   exec(message) {
-    message.mentions.members.forEach((member: GuildMember) => {verify(member);});
+    if (!message.mentions.members) return;
+
+    message.mentions.members.forEach((member: GuildMember) => {
+      verify(member);
+    });
   },
 });
