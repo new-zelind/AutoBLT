@@ -8,6 +8,7 @@ import { Message } from "discord.js";
 
 export const HelpCommand = Command({
   names: ["help"],
+  
   documentation: {
     description: "Well, you found this, didn\'t you?",
     usage: "help",
@@ -15,6 +16,7 @@ export const HelpCommand = Command({
   },
 
   check: Permissions.all,
+
   async exec(message: Message) {
     // Let's organize the commands into their group
     const groups: {

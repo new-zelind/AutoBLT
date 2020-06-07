@@ -1,16 +1,18 @@
 import Command, { Permissions } from "../lib/command";
 import { Message } from "discord.js";
 import { client } from "../client";
-import { makeEmbed } from "../lib/util";
 
 export default Command({
   names: ["uptime"],
+
   documentation: {
     description: "Check the uptime of the bot.",
     group: "META",
     usage: "uptime",
   },
+
   check: Permissions.all,
+
   async exec(message: Message, args: string[]) {
     if (!client.uptime || !client.user) return;
 

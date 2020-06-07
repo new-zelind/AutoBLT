@@ -1,6 +1,6 @@
 import verify from "../behaviors/verify";
 import Command, { Permissions } from "../lib/command";
-import { GuildMember, Message } from "discord.js";
+import { GuildMember } from "discord.js";
 
 export default Command({
   names: ["verify"],
@@ -12,6 +12,7 @@ export default Command({
   },
 
   check: Permissions.admin,
+
   exec(message) {
     if (!message.mentions.members) return;
 

@@ -1,14 +1,17 @@
-import Command, {Permissions} from "../lib/command";
+import Command, { Permissions } from "../lib/command";
 import { makeEmbed } from "../lib/util";
 
 export default Command({
     names: ["about"],
+
     documentation:{
         description: "See a little more information about me!",
         group: "META",
         usage: "about",
     },
+
     check: Permissions.all,
+
     async exec(message){
         const embed = makeEmbed(message)
             .setColor("#3A4958")

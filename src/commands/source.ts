@@ -1,4 +1,4 @@
-import Command, {Permissions}from "../lib/command";
+import Command, { Permissions }from "../lib/command";
 
 export default Command({
     names: ["source"],
@@ -10,6 +10,7 @@ export default Command({
     },
 
     check: Permissions.all,
+
     exec(message){
         message.channel.send("**Here's my source code:**");
         message.channel.send("https://github.com/new-zelind/AutoBLT/");

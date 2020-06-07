@@ -1,7 +1,3 @@
-/**
- * Dev command, lists what machine the bot is running on
- */
-
 import { Message } from "discord.js";
 import Command, { Permissions } from "../lib/command";
 

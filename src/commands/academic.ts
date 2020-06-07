@@ -11,6 +11,7 @@ export default Command({
   },
 
   check: Permissions.all,
+
   exec(message) {
     const embed = makeEmbed(message)
       .setColor("#f66733")

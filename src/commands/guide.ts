@@ -11,6 +11,7 @@ export default Command({
   },
 
   check: Permissions.all,
+  
   async exec(message: Message, args: string[]) {
     return message.channel.send({
       files: [

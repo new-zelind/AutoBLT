@@ -5,13 +5,14 @@ export default Command({
   names: ["ping"],
 
   check: Permissions.all,
-  async exec(message: Message, args: string[]) {
-    return message.channel.send("Pong!");
-  },
-
+  
   documentation: {
     description: "Check the Heartbeat of the bot.",
     group: "META",
     usage: "ping",
+  },
+
+  async exec(message: Message, args: string[]) {
+    return message.channel.send("Pong!");
   },
 });

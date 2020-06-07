@@ -1,20 +1,18 @@
 import Command, { Permissions } from "../lib/command";
-import { askString, choose, questionValidate } from "../lib/prompt";
-import {
-    GuildMember,
-    PartialGuildMember,
-    Message,
-    DMChannel,
-} from "discord.js";
+import { askString, choose } from "../lib/prompt";
+import { Message } from "discord.js";
 
 export default Command({
     names: ["gpa"],
+
     documentation: {
         description: "A simple semester GPA calculator.",
         group: "GENERAL",
         usage: "gpa",
     },
+
     check: Permissions.all,
+
     async exec(message: Message, args: string[]) {
 
         message.reply("Check your DMs!");
