@@ -34,7 +34,7 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
 
     //special message for dad
     if (leadership === "CD") {
-      dm.send("Hello, Taylor. I'm excited for this year, and I hope you are too!");
+      dm.send("Hello, Taylor. I'm excited for this year, and I hope you are too! (P.S. I've been instructed to call you \"Dad\". I'm not sure why.");
       isCD = true;
     }
   }
