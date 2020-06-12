@@ -1,7 +1,7 @@
 import Command, {Permissions} from "../lib/command";
 import {getLastCommit, Commit} from "git-last-commit";
-import {code} from "../lib/util";
 import {Message} from "discord.js";
+import {code} from "../lib/util";
 
 const getCommit = () =>
     new Promise<Commit>((res, rej) => {
