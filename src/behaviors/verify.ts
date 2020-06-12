@@ -79,13 +79,15 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
   }
 
   //add byrnes or lever and prepare 'building' for nicknaming
-  if (building === "BYRNES"){
-    roles.push("709624172539805756"); //byrnes role
-    building = "Byrnes";
-  }
-  else{
-    roles.push("709624285173514240"); //lever role
-    building = "Lever";
+  if(!isCD){
+    if (building === "BYRNES"){
+      roles.push("709624172539805756"); //byrnes role
+      building = "Byrnes";
+    }
+    else{
+      roles.push("709624285173514240"); //lever role
+      building = "Lever";
+    }
   }
 
   //set nickname

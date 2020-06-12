@@ -23,3 +23,4 @@ import "./source";
 import "./starrez";
 import "./uptime";
 import "./verify";
+import "./version";

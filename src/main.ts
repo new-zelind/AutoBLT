@@ -1,11 +1,4 @@
-import discord, {
-  Client,
-  DiscordAPIError,
-  Collection,
-  GuildManager,
-  GuildMember,
-  PartialGuildMember,
-} from "discord.js";
+import {GuildMember, PartialGuildMember} from "discord.js";
 import { client } from "./client";
 import { handle, isCommand, RESPONSES } from "./lib/command";
 
@@ -19,16 +12,16 @@ import { handleMessage, addMessageHandler } from "./lib/message";
 
 //array of statuses for the bot
 const statuses = [
-  "Issuing keys",
-  "Working the front desk",
-  "Watching over the server",
-  "Judging ByrnesBot",
-  "Browsing TigerFlix",
-  "Watching sports highlights",
-  "THE CAKE IS NOT A LIE",
-  "Finishing some training videos",
-  "Writing an IR :/",
-  "Poking Vexbot",
+  "the front desk",
+  "the server",
+  "and waiting",
+  "ByrnesBot",
+  "TigerFlix",
+  "Football",
+  "some training videos",
+  "Vexbot",
+  "the residents",
+  "ERRORS",
 ];
 
 client.on("ready", () => {
@@ -38,11 +31,11 @@ client.on("ready", () => {
 
   console.log(`${client.user.tag} is online!`);
 
-  //automatically update status every minute
+  //automatically update status every 5 minutes
   setInterval(() => {
     const index = Math.floor(Math.random() * (statuses.length - 1));
-    client.user?.setActivity(statuses[index], { type: "CUSTOM_STATUS" });
-  }, 60000);
+    client.user?.setActivity(statuses[index], { type: "WATCHING" });
+  }, 300000);
 });
 
 // Ignore bot commands
@@ -70,6 +63,7 @@ client.on("messageUpdate", (old, current) => {
 client.on(
   "guildMemberAdd",
   async (member: GuildMember | PartialGuildMember) => {
+    console.log(`Started auto-verify for ${member.user?.username}#${member.user?.discriminator}`);
     verify(member);
   }
 );
