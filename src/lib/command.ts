@@ -3,18 +3,35 @@ import {
   TextChannel,
   PartialMessage,
 } from "discord.js";
-import { makeEmbed } from "./util";
+import {authorization} from "./access";
 
-const owner = "";
+const owner = authorization("discord.owner");
 export const PREFIX = ["*"];
 
 type Message = FullMessage | PartialMessage;
 
+/**
+ * A function to identify if a message is a command
+ * @param message: the string to find a command in
+ * @returns: true of #message includes PREFIX
+ *           false if #message does not
+ */
 export function isCommand(message: Message) {
   if (!message.content) return false;
   return PREFIX.includes(message.content[0]);
 }
 
+/**
+ * @defines names:          The name and any aliases of the command
+ *          documentation:  Documentation about the command for $help command
+ *            description:  What the command does
+ *            usage:        How to invoke the command, and syntax
+ *            group:        Which group the command falls under
+ *                            (META, ADMIN, DEV, GENERAL)
+ *            hidden:       Whether or not the command is hidden
+ * 
+ * @initialization ensures that names, description, usage, group, are empty strings
+ */
 export interface CommandConfiguration {
   names: string[];
 
@@ -43,6 +60,12 @@ export interface CommandConfiguration {
 // Holds all the registered commands (with each name being mapped)
 export const REGISTRY = new Map<string, CommandConfiguration>();
 
+/**
+ * A function to match a command invocation to its location in the registry
+ * @param message : the command to match
+ * @returns null if the registry does not contain the command
+ *          the name of the command if it exists in the registry
+ */
 export function matchCommand(message: Message) {
   const name = message.content?.slice(1).split(" ")[0] || "";
 
@@ -53,6 +76,13 @@ export function matchCommand(message: Message) {
   return REGISTRY.get(name);
 }
 
+/**
+ * A function to initialize the list of commands
+ * @pre : the registry has been created
+ * @param config : An instance of a command
+ * @return : #config
+ * @post : REGISTRY = REGISTRY.set(#config.name)
+ */
 export default function makeCommand(config: CommandConfiguration) {
   for (const name of config.names) {
     REGISTRY.set(name, config);
@@ -67,6 +97,18 @@ export const RESPONSES = new Map<Message, Message>();
 // Commands that are disabled go here
 export const DISABLED = new Set<CommandConfiguration>();
 
+/**
+ * A command to handle all messages sent in the server
+ * @param message : The message just sent by a GuildMember
+ * @returns :
+ *    false if the message is not a command
+ *    false if the bot sent the command
+ *    false if the message is empty
+ *    false if matchCommand(#message) returns null
+ *    false if the command is disabled
+ *    true if the #message.author does not have permission to invoke the command
+ *    true if the command is successfully executed
+ */
 export async function handle(message: Message): Promise<boolean> {
   if (!isCommand(message)) return false;
   if (message.author?.id == "680135764667138167") return false;

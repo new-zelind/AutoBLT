@@ -20,7 +20,7 @@ export default Command({
     async exec(message: Message){
         const lastCommit = await getCommit();
         return message.channel.send(
-            code(`HASH    | ${lastCommit.hash}\nBRANCH  | ${lastCommit.branch}\nSUBJECT | ${lastCommit.subject}\nDATE    | ${lastCommit.committedOn}`)
+            code(`HASH    | ${lastCommit.hash}\nBRANCH  | ${lastCommit.branch}\nSUBJECT | ${lastCommit.subject}`)
         );
     },
 });

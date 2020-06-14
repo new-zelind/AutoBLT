@@ -6,17 +6,33 @@ type MessageHandler = (message: Message) => Promise<boolean> | boolean;
 //use a simple array stack implementation for the message handlers.
 const handlers: MessageHandler[] = [];
 
-//push a handler onto the stack.
+/**
+ * A simple function to add a messageHandler object to the stack
+ * @pre : #handlers != null
+ * @param handler : the messageHandler to be added
+ * @post : handlers.size++;
+ */
 function addMessageHandler(handler: MessageHandler) {
   return handlers.push(handler) - 1;
 }
-
+/**
+ * A function to remove a messageHandler object from the stack
+ * @pre handlers[#index] != null
+ * @param index : the index of the handler to remove
+ * @post : handlers[#index] = false
+ */
 //Pops a message handler from the stack, replacing it with an empty function.
 function removeMessageHandler(index: number) {
   handlers[index] = () => false;
 }
 
-//Add a single-use handler to the stack.
+/**
+ * A function to add a single-use messageHandler object to the stack
+ * @pre handlers.size != 0 && handlers != null
+ * @param handler the one-time messageHandler to add
+ * @returns index iff #handler resolves
+ *          the resolution function of #handler if it does not resolve
+ */
 function addOneTimeMessageHandler(handler: MessageHandler) {
   let index = addMessageHandler(async function (message: Message) {
     let res = await handler(message);
@@ -26,7 +42,12 @@ function addOneTimeMessageHandler(handler: MessageHandler) {
   return index;
 }
 
-//Handle the actual message
+/**
+ * Handles the messages sent and interpreted by the bot
+ * @pre handlers.indexOf(#message) != -1
+ * @param message : The message sent in the server
+ * @return the command or function called to resolve #message
+ */
 async function handleMessage(message: Message) {
   let i = 0;
   while (!(await handlers[i++](message)) && i < handlers.length) {}
