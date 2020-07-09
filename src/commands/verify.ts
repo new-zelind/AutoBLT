@@ -11,7 +11,9 @@ export default Command({
     usage: "verify <user : @ mention>",
   },
 
-  check: Permissions.admin,
+  check: Permissions.compose(
+    Permissions.admin, Permissions.owner
+  ),
 
   exec(message) {
     if (!message.mentions.members) return;
