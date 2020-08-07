@@ -11,9 +11,16 @@ export default Command({
     usage: "uptime",
   },
 
-  check: Permissions.all,
+  check: Permissions.any(
+    Permissions.channel("bot-commands"),
+    Permissions.owner
+  ),
 
-  async exec(message: Message, args: string[]) {
+  async fail(message:Message){
+    return message.channel.send(`In _#bot-commands_, please!`);
+  },
+
+  async exec(message: Message){
     if (!client.uptime || !client.user) return;
 
     /*let seconds = client.uptime / 1000;

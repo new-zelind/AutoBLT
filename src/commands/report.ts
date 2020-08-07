@@ -9,7 +9,14 @@ export default Command({
         usage: "report",
     },
 
-    check: Permissions.all,
+    check: Permissions.any(
+        Permissions.channel("bot-commands"),
+        Permissions.owner
+    ),
+
+    async fail(message){
+        return message.channel.send(`In _#bot-commands_, please!`);
+    },
 
     exec(message){
         message.channel.send("**Incident Reporting link:**");

@@ -10,7 +10,14 @@ export default Command({
     usage: "guide",
   },
 
-  check: Permissions.all,
+  check: Permissions.any(
+    Permissions.channel("bot-commands"),
+    Permissions.owner
+  ),
+
+  async fail(message){
+    return message.channel.send(`In _#bot-commands_, please!`);
+  },
   
   async exec(message: Message, args: string[]) {
     return message.channel.send({

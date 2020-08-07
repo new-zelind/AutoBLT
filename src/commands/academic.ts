@@ -10,9 +10,16 @@ export default Command({
     usage: "academic",
   },
 
-  check: Permissions.all,
+  check: Permissions.any(
+    Permissions.channel("bot-commands"),
+    Permissions.owner
+  ),
 
-  exec(message) {
+  async fail(message){
+    return message.channel.send(`In _#bot-commands_, please!`);
+  },
+
+  async exec(message) {
     const embed = makeEmbed(message)
       .setColor("#f66733")
       .setTitle("Fall 2020 Academic Calendar")

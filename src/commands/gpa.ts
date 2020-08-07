@@ -11,9 +11,16 @@ export default Command({
         usage: "gpa",
     },
 
-    check: Permissions.all,
+    check: Permissions.any(
+        Permissions.channel("bot-commands"),
+        Permissions.owner
+    ),
 
-    async exec(message: Message, args: string[]) {
+    async fail(message){
+        return message.channel.send(`In _#bot-commands_, please!`);
+    },
+
+    async exec(message: Message) {
 
         message.reply("Check your DMs!");
         const dm = await message.author.createDM();

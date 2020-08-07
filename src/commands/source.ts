@@ -9,10 +9,19 @@ export default Command({
         usage: "source",
     },
 
-    check: Permissions.all,
+    check: Permissions.any(
+        Permissions.channel("bot-commands"),
+        Permissions.owner
+    ),
+
+    async fail(message){
+        return message.channel.send(`In _#bot-commands_, please!`);
+  } ,
 
     exec(message){
-        message.channel.send("**Here's my source code:**");
-        message.channel.send("https://github.com/new-zelind/AutoBLT/");
+        let msg:string = "**Here's my source code:**\nhttps://github.com/new-zelind/AutoBLT/";
+        if(Math.random() >= 0.95) msg += "\n_Be sure to star the repository!_";
+
+        return message.channel.send(msg);
     },
 });

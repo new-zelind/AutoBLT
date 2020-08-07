@@ -11,11 +11,15 @@ export default Command({
     usage: "verify <user : @ mention>",
   },
 
-  check: Permissions.compose(
+  check: Permissions.any(
     Permissions.admin, Permissions.owner
   ),
 
-  exec(message) {
+  async fail(message){
+    return message.channel.send("I'm afraid I can't do that.");
+  },
+
+  async exec(message) {
     if (!message.mentions.members) return;
 
     message.mentions.members.forEach((member: GuildMember) => {

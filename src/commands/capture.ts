@@ -9,11 +9,18 @@ export default Command({
         usage:"capture"
     },
 
-    check: Permissions.all,
+    check: Permissions.any(
+        Permissions.channel("bot-commands"),
+        Permissions.owner
+    ),
+
+    async fail(message){
+        return message.channel.send(`In _#bot-commands_, please!`);
+    },
 
     async exec(message:Message){
         return message.channel.send(
-            "https://hr.app.clemson.edu/tcs/"
+            "**Time Capture Tool:**\nhttps://hr.app.clemson.edu/tcs/"
         );
     }
 });

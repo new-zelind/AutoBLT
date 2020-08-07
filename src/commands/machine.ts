@@ -11,7 +11,15 @@ export const MachineCommand = Command({
     group: "ADMIN",
   },
 
-  check: Permissions.admin,
+  check: Permissions.any(
+    Permissions.channel("bot-commands"),
+    Permissions.owner
+  ),
+
+  async fail(message){
+    return message.channel.send(`In _#bot-commands_, please!`);
+  },
+
   exec(message: Message) {
     const { username } = os.userInfo();
     const machine = os.hostname();
