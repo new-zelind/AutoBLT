@@ -19,8 +19,11 @@ export default Command({
     check: Permissions.owner,
     async exec(message: Message){
         const lastCommit = await getCommit();
-        return message.channel.send(
-            code(`HASH    | ${lastCommit.hash}\nBRANCH  | ${lastCommit.branch}\nSUBJECT | ${lastCommit.subject}`)
-        );
+
+        let msg = `HASH    | ${lastCommit.hash}\n`;
+        msg +=    `BRANCH  | ${lastCommit.branch}\n`;
+        msg +=    `SUBJECT | ${lastCommit.subject}\n`;
+        msg +=    `AUTHOR  | ${lastCommit.author.name}`;
+        return message.channel.send(code(msg));
     },
 });
