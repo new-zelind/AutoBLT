@@ -28,7 +28,7 @@ export default Command({
                 },
                 {
                     name: "What do you do?",
-                    value: "Well, I can do a lot of things. I have a lot of call-and-response commands that you can use (try '*help' to see a list of these!). I also keep track of who's at desk, who's on call, and make sure everything's working on the Discord Server!"
+                    value: "Well, I can do a lot of things. I have a lot of call-and-response commands that you can use (try '*help' to see a list of these!). I make things easier and ensure that everything's working on the Discord Server!"
                 },
                 {
                     name: "Why AutoBLT? Why are you necessary?",
@@ -40,7 +40,7 @@ export default Command({
                 },
                 {
                     name: "Anything else?",
-                    value: "Yes, actually! I have two brothers, Vexbot and ByrnesBot. Brendan programmed Vexbot for the VEX Robotics South Carolina Discord, and Zach programmed ByrnesBot for his floor Discord. ByrnesBot is super uppity about everything, and Vexbot is just fun to heckle and pester. I even have a girlfriend who works at Aperture Science. Her name is GLaDOS, and she's sweet. I also have a soft spot for cake; it's a shame I can't eat."
+                    value: "Yes, actually! I have three brothers, Vexbot, ByrnesBot, and eBeaver. Brendan programmed Vexbot for the VEX Robotics South Carolina Discord, and Zach programmed ByrnesBot and eBeaver for his floor and the Byrnes/Lever Discords, respectively. ByrnesBot is super uppity about everything, and Vexbot is just fun to heckle and pester. Me and eBeaver don't usually talk. I also have a soft spot for cake; it's a shame I can't eat."
                 }
             );
         return message.channel.send(embed);
