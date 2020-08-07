@@ -13,6 +13,7 @@
 
 import "./about";
 import "./academic";
+import "./capture";
 import "./gpa";
 import "./guide";
 import "./help";
