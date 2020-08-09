@@ -18,6 +18,7 @@ import "./gpa";
 import "./guide";
 import "./help";
 import "./machine";
+import "./opdates";
 import "./ping";
 import "./report";
 import "./source";

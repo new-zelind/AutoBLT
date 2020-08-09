@@ -21,12 +21,12 @@ export default Command({
 
   async exec(message) {
     const embed = makeEmbed(message)
-      .setColor("#f66733")
+      .setColor("#F56600")
       .setTitle("Fall 2020 Academic Calendar")
       .setURL(
         "https://www.clemson.edu/registrar/academic-calendars/calendars.html?year=2020&semester=fall"
       )
-      .setDescription("Use *operational for Housing Calendar.")
+      .setDescription("Use *opdates for Housing Calendar.")
       .addFields(
         { name: "August 19", value: "Online classes begin" },
         { name: "August 25", value: "Last day to add a class" },

@@ -11,13 +11,10 @@ export const MachineCommand = Command({
     group: "ADMIN",
   },
 
-  check: Permissions.any(
-    Permissions.channel("bot-commands"),
-    Permissions.owner
-  ),
+  check: Permissions.owner,
 
-  async fail(message){
-    return message.channel.send(`In _#bot-commands_, please!`);
+  async fail(message:Message){
+    return message.channel.send(`Hey, you're not Zach...`);
   },
 
   exec(message: Message) {

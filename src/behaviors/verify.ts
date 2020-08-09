@@ -1,4 +1,4 @@
-import {GuildMember, PartialGuildMember} from "discord.js";
+import {GuildMember, PartialGuildMember, DMChannel} from "discord.js";
 import {askString, choose} from "../lib/prompt";
 
 export default async function verify(member: GuildMember | PartialGuildMember) {
@@ -6,9 +6,14 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
   console.log(`Started verification for ${member.id}`);
   
   //defines for beginning of function
-  let name, position, leadership, room, building, year;
-  let isCD = false;
-  const dm = await member.createDM();
+  let name:string,
+      position:string,
+      leadership:string,
+      room:string,
+      building:string,
+      year:string;
+  let isCD:boolean = false;
+  const dm:DMChannel = await member.createDM();
 
   //send first message
   dm.send(
@@ -67,7 +72,7 @@ export default async function verify(member: GuildMember | PartialGuildMember) {
     );
   }
 
-  const roles = ["709625110285254699"]; //staff member role
+  const roles:string[] = ["709625110285254699"]; //staff member role
 
   //add leadership or new/returner role
   if (position === "LEADERSHIP") roles.push("709623938040332340");
