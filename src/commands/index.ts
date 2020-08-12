@@ -14,13 +14,14 @@
 import "./about";
 import "./academic";
 import "./capture";
+import "./care";
 import "./gpa";
 import "./guide";
 import "./help";
 import "./machine";
 import "./opdates";
 import "./ping";
-import "./report";
+import "./ir";
 import "./source";
 import "./starrez";
 import "./uptime";
