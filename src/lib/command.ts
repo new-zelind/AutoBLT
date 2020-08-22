@@ -6,7 +6,7 @@ import {
 import {authorization} from "./access";
 
 const owner = authorization("discord.owner");
-export const PREFIX = ["*"];
+export const PREFIX = authorization("discord.prefix");
 
 type Message = FullMessage | PartialMessage;
 
@@ -192,7 +192,7 @@ export const Permissions = {
   },
 
   owner(message: Message) {
-    return message.author?.id === owner;
+    return message.author?.id === "286283133337206784";
   },
 
   guild(message: Message) {
