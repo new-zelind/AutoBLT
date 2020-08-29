@@ -11,7 +11,7 @@ import "./commands";
 import { handleMessage, addMessageHandler } from "./lib/message";
 
 //array of statuses for the bot
-const statuses = [
+/*const statuses = [
   "the front desk",
   "the server",
   "and waiting",
@@ -22,7 +22,7 @@ const statuses = [
   "Vexbot",
   "the residents",
   "ERRORS",
-];
+];*/
 
 client.on("ready", () => {
 
@@ -32,10 +32,11 @@ client.on("ready", () => {
   console.log(`${client.user.tag} is online!`);
 
   //automatically update status every 5 minutes
-  setInterval(() => {
+  /*setInterval(() => {
     const index = Math.floor(Math.random() * (statuses.length - 1));
     client.user?.setActivity(statuses[index], { type: "WATCHING" });
-  }, 300000);
+  }, 300000);*/
+  client.user.setActivity("BLACK LIVES MATTER", {type: "PLAYING"});
 });
 
 // Ignore bot commands
