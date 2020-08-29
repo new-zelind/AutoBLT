@@ -1,6 +1,7 @@
 import {GuildMember, PartialGuildMember} from "discord.js";
 import { client } from "./client";
 import { handle, isCommand, RESPONSES } from "./lib/command";
+import {report, information} from "./lib/report";
 
 // Behaviors
 import verify from "./behaviors/verify";
@@ -73,5 +74,6 @@ client.on(
 client.on("message", handleMessage);
 
 //error handling
-process.on("uncaughtException", console.log);
-process.on("unhandledRejection", console.log);
+const reporter = report(client);
+process.on("uncaughtException", (error:Error) => reporter(error));
+process.on("unhandledRejection", (error:Error) => reporter(error));
