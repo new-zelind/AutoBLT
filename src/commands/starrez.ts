@@ -19,6 +19,6 @@ export default Command({
     },
 
     exec(message){
-        return message.channel.send("https://starrez.clemson.edu/StarRezWeb");
+        return message.channel.send("https://clemson.starrezhousing.com/StarRezWeb");
     }
 })
