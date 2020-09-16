@@ -19,6 +19,7 @@ import "./gpa";
 import "./guide";
 import "./help";
 import "./machine";
+import "./maintenance";
 import "./opdates";
 import "./ping";
 import "./ir";
@@ -27,3 +28,4 @@ import "./starrez";
 import "./uptime";
 import "./verify";
 import "./version";
+import "./zoom"; //zoom meeting link not included for security reasons
