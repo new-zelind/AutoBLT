@@ -1,6 +1,5 @@
 import Command, {Permissions} from "../lib/command";
 import {Message} from "discord.js";
-import { exec } from "child_process";
 
 export default Command({
     names:["maintenance"],

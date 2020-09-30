@@ -11,6 +11,7 @@
  *      Restrictions: Users on the development team
 */
 
+import "./8ball";
 import "./about";
 import "./academic";
 import "./capture";
