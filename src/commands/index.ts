@@ -24,6 +24,7 @@ import "./maintenance";
 import "./opdates";
 import "./ping";
 import "./ir";
+import "./send";
 import "./source";
 import "./starrez";
 import "./uptime";
